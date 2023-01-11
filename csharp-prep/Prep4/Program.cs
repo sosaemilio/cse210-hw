@@ -28,7 +28,6 @@ class Program
         // Part 3
 
         int average = numberList.Sum() / numberList.Count;
-
         Console.WriteLine($"The average is: {average}");
 
         // Part 3
