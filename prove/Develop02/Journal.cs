@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 class Journal
 {
     public List<Entry> _entryList = new List<Entry> {};
@@ -18,5 +20,15 @@ class Journal
     public void addEntry(Entry entry)
     {
         _entryList.Add(entry);
+    }
+
+    public void loadFile(string filename)
+    {
+
+    }
+
+    public void saveFile(string filename)
+    {
+        
     }
 }
