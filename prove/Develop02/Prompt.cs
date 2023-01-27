@@ -16,7 +16,7 @@ class Prompt
 
     }
 
-    public string generatePrompt()
+    public string GeneratePrompt()
     {
         Random randomNumber = new Random();
         string prompt = _promptList[randomNumber.Next(5)];

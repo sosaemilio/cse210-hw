@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+
 class Journal
 {
     public List<Entry> _entryList = new List<Entry> {};
@@ -9,26 +10,37 @@ class Journal
 
     }
 
-    public void displayJournal()
+    public void DisplayJournal()
     {
         foreach (Entry entry in _entryList)
         {
-            entry.display();
+            entry.Display();
         }
     }
 
-    public void addEntry(Entry entry)
-    {
+    public void AddEntry(Entry entry)
+    {   
         _entryList.Add(entry);
     }
 
-    public void loadFile(string filename)
+    public void LoadFile(string filename)
     {
-
+        //PENDING
     }
 
-    public void saveFile(string filename)
+    public void SaveFile()
     {
-        
+        Console.WriteLine("Filename");
+        string filename = Console.ReadLine();
+
+
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (Entry entry in _entryList) {
+                string entryLine = entry.ConvertString();
+                outputFile.WriteLine(entryLine);
+            }
+            
+        }
     }
 }

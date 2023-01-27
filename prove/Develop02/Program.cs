@@ -6,7 +6,7 @@ class Program
     {   
         // Create a Prompt object and generates a prompt
         Prompt randomPrompts = new Prompt();
-        string prompt = randomPrompts.generatePrompt();
+        string prompt = randomPrompts.GeneratePrompt();
 
         // Display the generated prompt and stores the response on a string variable
         Console.WriteLine(prompt);
@@ -24,7 +24,9 @@ class Program
 
         // Generates an journal and store the entries into the journal
         Journal journal = new Journal();
-        journal.addEntry(entry);
-        journal.displayJournal();
+        journal.AddEntry(entry);
+        journal.DisplayJournal();
+
+        journal.SaveFile();
     }
 }

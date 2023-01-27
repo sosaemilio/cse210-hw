@@ -10,8 +10,14 @@ class Entry
     {
     }
 
-    public void display()
+    public void Display()
     {
         Console.WriteLine($"\n{_date} - ({_prompt}) {_response}");
+    }
+
+    public string ConvertString()
+    {
+        string line = $"{_date} - ({_prompt}) {_response}";
+        return line;
     }
 }
