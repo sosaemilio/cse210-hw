@@ -26,7 +26,7 @@ class Program
                 // Create a date object and generate today's date.
                 DateTime date = DateTime.Today;
 
-                // Generate an "Entry" object to store all the entries (prompt, date and response)
+                // Generate an "Entry" object
                 Entry entry = new Entry(date.ToString("d"), prompt, response);
                 
                 // Generates an journal and store the entries into the journal

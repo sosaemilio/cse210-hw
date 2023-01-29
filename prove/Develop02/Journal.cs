@@ -31,20 +31,25 @@ class Journal
             
             foreach (string line in lines)
             {
-                string[] parts = line.Split("|");
+                string[] parts = line.Split(",");
                 
                 string date = parts[0];
                 string prompt = parts[1];
-                string response = parts[2];
+                string response = parts[3];
 
 
                 Entry entry = new Entry(date, prompt, response);
 
                 _entryList.Add(entry);
             }
-        } catch (FileNotFoundException e)
+        } 
+        catch (FileNotFoundException e)
         {
-            Console.WriteLine($"File not found!", e.Message);
+            Console.WriteLine($"File not found! ERROR: {e.Message}");
+        }
+        catch (System.IndexOutOfRangeException e)
+        {
+            Console.WriteLine($"File could not be read, one or multiple rows present issues. ERROR: {e.Message}");
         }
 
     }

@@ -21,7 +21,7 @@ class Entry
 
     public string ConvertString()
     {
-        string line = $"{_date} | {_prompt} | {_response}";
+        string line = $"{_date},{_prompt},{_response}";
         return line;
     }
 }
