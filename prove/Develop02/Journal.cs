@@ -35,7 +35,7 @@ class Journal
                 
                 string date = parts[0];
                 string prompt = parts[1];
-                string response = parts[3];
+                string response = parts[2];
 
 
                 Entry entry = new Entry(date, prompt, response);
