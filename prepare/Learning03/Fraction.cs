@@ -44,12 +44,13 @@ public class Fraction
         this._bottom = bottom;
     }
 
-    /*
     public string GetFractionString()
     {
-        
+        string franctionString = _top.ToString() + "/" + _bottom.ToString();
+        return franctionString;
     }
 
+    /*
     public double GetDecimalValue()
     {
 
