@@ -6,7 +6,7 @@ public class Fraction
     // Constructor
     public Fraction()
     {
-        this._bottom = 1;
+        this._top = 1;
         this._bottom = 1;
     }
 
@@ -44,16 +44,16 @@ public class Fraction
         this._bottom = bottom;
     }
 
+    //Methods
     public string GetFractionString()
     {
         string franctionString = _top.ToString() + "/" + _bottom.ToString();
         return franctionString;
     }
 
-    /*
+    
     public double GetDecimalValue()
     {
-
+        double decimalValue = _top / _bottom;
+        return decimalValue;
     }
-    */
-}

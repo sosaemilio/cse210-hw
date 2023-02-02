@@ -5,11 +5,17 @@ class Program
     static void Main(string[] args)
     {
         Fraction f1 = new Fraction();
-        Fraction f2 = new Fraction(6);
-        Fraction f3 = new Fraction(6, 7);
+        Fraction f2 = new Fraction(5);
 
-        Console.WriteLine($"Test: {f1.GetFractionString()}, Test 2: {f2.GetFractionString()}, Test 4: {f3.GetFractionString()}");
-
+        Console.WriteLine(f1.GetFractionString());
+        Console.WriteLine(f1.GetDecimalValue());
+        Console.WriteLine(f2.GetFractionString());
+        Console.WriteLine(f2.GetDecimalValue());
         
+        f1.SetTop(3);
+        f1.SetBottom(4);
+
+        Console.WriteLine($"{f1.GetTop()}/{f1.GetBottom()}");
+        Console.WriteLine($"{f1.GetDecimalValue()}");
     }
 }
