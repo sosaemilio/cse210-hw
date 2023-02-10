@@ -8,16 +8,18 @@ class Program
         Console.WriteLine(reference.GetReference());
 
         string example = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.";
+        Scripture scripture = new Scripture();
+        scripture.SetScripture(reference, example);
 
-        List<string> scriptureList = example.Split(' ').ToList();
-        
-
-        Scripture scripture = new Scripture(reference, scriptureList);
-        for (int i = 0; i < 3; i++) 
+        string exit = "";
+        while (exit != "exit")
         {
+            Console.Clear();
+            string response = scripture.getScripture();
+            Console.WriteLine(response);
+            exit = Console.ReadLine();
             scripture.HideRandomWord();
         }
-        scripture.getScripture();
 
 
     }

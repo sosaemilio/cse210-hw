@@ -3,6 +3,10 @@ class Scripture
     private Reference _reference = new Reference();
     private List<Word> _word = new List<Word> {};
 
+    public Scripture()
+    {
+        
+    }
    public Scripture(Reference reference, List<string> words)
    {
     this._reference = reference;
@@ -20,49 +24,66 @@ class Scripture
     this._word = words;
    }
 
-   public void getScripture()
+   public string getScripture()
    {
     string reference = _reference.GetReference();
-    List<string> words = new List<string> {};
+    string words = "";
+
     foreach(Word aWord in _word)
     {
         string word = aWord.GetWord();
-        if (aWord.IsHidden()){
+        if (aWord.IsHidden())
+        {
             string underline = "";
             foreach(char letter in word)
             {
                 underline += "_";
             }
-            words.Add(underline);
-        } else {
-            words.Add(word);
+            words += $" {underline}";
+        } 
+        else 
+        {
+            words += $" {word}";
         }
     }
 
-    Console.Write(reference);
-    foreach(string word in words)
-    {
-        Console.Write($" {word}");
-    }
+    string scripture = $"{reference} {words}";
+    return scripture;
    }
 
-   public void SetScripture(Reference reference, List<Word> words) 
+   public void SetScripture(Reference reference, string words) 
    {
     this._reference = reference;
-    this._word = words;
+    List<string> scriptureList = words.Split(' ').ToList();
+    // Converte WordList into a Object Word 
+    foreach(string word in scriptureList)
+    {
+        Word aWord = new Word(word);
+        _word.Add(aWord);
+    }
    }
 
     //Methods
     public void HideRandomWord()
     {
-        int listLenght = _word.Count;
-        Random rnd = new Random();
-        int randomNumber = rnd.Next(0, listLenght - 1);
-        string randomWord = _word[randomNumber].GetWord();
+        Random aRnd = new Random();
+        int RndNumber = aRnd.Next(1, 3);
         
-        // TEST - TO BE REMOVED
-        Console.WriteLine(randomWord);
-        //
-        _word[randomNumber].HideWord();
+        for (int i = 0; i < RndNumber; i++)
+        {
+            int listLenght = _word.Count;
+            Random rnd = new Random();
+            int randomNumber = rnd.Next(0, listLenght - 1);
+            
+            if (!_word[randomNumber].IsHidden())
+            {
+                string randomWord = _word[randomNumber].GetWord();
+                _word[randomNumber].HideWord();   
+            } 
+            else
+            {
+            HideRandomWord();  
+            }
+        }
     }
 }
