@@ -4,6 +4,10 @@ class Word {
     private bool _hidden;
 
     //Constructor
+    public Word()
+    {
+        
+    }
     public Word(string word)
     {
         this._word = word;
