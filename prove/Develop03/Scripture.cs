@@ -5,7 +5,7 @@ class Scripture
 
     public Scripture()
     {
-        
+
     }
    public Scripture(Reference reference, List<string> words)
    {
@@ -13,7 +13,8 @@ class Scripture
     // Converte WordList into a Object Word 
     foreach(string word in words)
     {
-        Word aWord = new Word(word);
+        Word aWord = new Word();
+        aWord.SetWord(word);
         _word.Add(aWord);
     }
    }
