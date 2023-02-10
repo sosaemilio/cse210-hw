@@ -17,7 +17,7 @@ class Program
             Console.Clear();
             string response = scripture.getScripture();
             Console.WriteLine(response);
-            exit = Console.ReadLine();
+            exit = Console.ReadLine().ToLower();
             scripture.HideRandomWord();
         }
 
