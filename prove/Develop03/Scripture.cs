@@ -21,47 +21,47 @@ class Scripture
 
    public Scripture(Reference reference, List<Word> words)
    {
-    this._reference = reference;
-    this._word = words;
+        this._reference = reference;
+        this._word = words;
    }
 
    public string getScripture()
    {
-    string reference = _reference.GetReference();
-    string words = "";
+        string reference = _reference.GetReference();
+        string words = "";
 
-    foreach(Word aWord in _word)
-    {
-        string word = aWord.GetWord();
-        if (aWord.IsHidden())
+        foreach(Word aWord in _word)
         {
-            string underline = "";
-            foreach(char letter in word)
+            string word = aWord.GetWord();
+            if (aWord.IsHidden())
             {
-                underline += "_";
+                string underline = "";
+                foreach(char letter in word)
+                {
+                    underline += "_";
+                }
+                words += $" {underline}";
+            } 
+            else 
+            {
+                words += $" {word}";
             }
-            words += $" {underline}";
-        } 
-        else 
-        {
-            words += $" {word}";
         }
-    }
 
-    string scripture = $"{reference} {words}";
-    return scripture;
+        string scripture = $"{reference} {words}";
+        return scripture;
    }
 
    public void SetScripture(Reference reference, string words) 
    {
-    this._reference = reference;
-    List<string> scriptureList = words.Split(' ').ToList();
-    // Converte WordList into a Object Word 
-    foreach(string word in scriptureList)
-    {
-        Word aWord = new Word(word);
-        _word.Add(aWord);
-    }
+        this._reference = reference;
+        List<string> scriptureList = words.Split(' ').ToList();
+        // Converte WordList into a Object Word 
+        foreach(string word in scriptureList)
+        {
+            Word aWord = new Word(word);
+            _word.Add(aWord);
+        }
    }
 
     //Methods
@@ -83,7 +83,7 @@ class Scripture
             } 
             else
             {
-            HideRandomWord();  
+                HideRandomWord();
             }
         }
     }
