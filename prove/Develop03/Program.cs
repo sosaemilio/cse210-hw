@@ -17,7 +17,12 @@ class Program
             Console.WriteLine(response);
             Console.WriteLine("\nPlease enter to continue or type 'quit' to finish: ");
             op = Console.ReadLine().ToLower();
-            scripture.HideRandomWord();
+            Random rnd = new Random();
+            int randonNumber = rnd.Next(1, 3);
+            for (int i = 0; i < randonNumber; i++)
+            {
+                scripture.HideRandomWord();
+            }
         }
 
 

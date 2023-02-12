@@ -2,6 +2,7 @@ class Scripture
 {
     private Reference _reference = new Reference();
     private List<Word> _word = new List<Word> {};
+    private int hiddenWords = 0;
 
     public Scripture()
     {
@@ -42,11 +43,13 @@ class Scripture
                 }
                 words += $" {underline}";
             } 
-            else 
+            else
             {
                 words += $" {word}";
             }
+
         }
+
 
         string scripture = $"{reference} {words}";
         return scripture;
@@ -67,24 +70,30 @@ class Scripture
     //Methods
     public void HideRandomWord()
     {
-        Random aRnd = new Random();
-        int RndNumber = aRnd.Next(1, 3);
+        int listLenght = _word.Count;
+        Random rnd = new Random();
+        int randomNumber = rnd.Next(0, listLenght);
         
-        for (int i = 0; i < RndNumber; i++)
+        if (!_word[randomNumber].IsHidden())
         {
-            int listLenght = _word.Count;
-            Random rnd = new Random();
-            int randomNumber = rnd.Next(0, listLenght - 1);
-            
-            if (!_word[randomNumber].IsHidden())
+            _word[randomNumber].HideWord();
+            hiddenWords += 1;
+            Console.WriteLine(hiddenWords);
+        }
+        else
+        {  
+            if (hiddenWords == _word.Count)
             {
-                string randomWord = _word[randomNumber].GetWord();
-                _word[randomNumber].HideWord();   
-            } 
+                Console.Clear();
+                Console.WriteLine(getScripture());
+                Environment.Exit(0);
+            }
             else
             {
                 HideRandomWord();
             }
         }
+
     }
 }
+    
