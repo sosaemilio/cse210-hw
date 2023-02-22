@@ -28,7 +28,7 @@ public class BreathingActivity : Activity
         }
 
         Console.WriteLine("\nWell done!!");
-        Console.WriteLine(base.GetCloseMessage();)
+        Console.WriteLine(base.GetCloseMessage());
     }
 
     private void Breath()
