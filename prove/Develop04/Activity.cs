@@ -4,7 +4,7 @@ public class Activity
     private int _duration;
     private string _activityName;
     private string _description;
-    protected List<string> _randomPrompts = new List<string> {};
+    private List<string> _randomPrompts = new List<string> {};
 
     //Constructor
     public Activity()
@@ -37,7 +37,13 @@ public class Activity
     }
     public string GetCloseMessage()
     {
-        string closeMessage = "You have completed another " + _duration + "of the " + _activityName;
+        string closeMessage = "You have completed another " + _duration + " seconds of the " + _activityName;
         return closeMessage;
+    }
+
+    public void Wait()
+    {
+        Thread.Sleep(1000);
+
     }
 }   
