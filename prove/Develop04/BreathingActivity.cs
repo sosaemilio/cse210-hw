@@ -14,21 +14,28 @@ public class BreathingActivity : Activity
     {
         base.DisplayActivity();
         Console.Write("How long would you like to wait in seconds ");
+        int duration = int.Parse(Console.ReadLine());
+        //base.SetDuration(duration);
 
-        int duration = int.Parse(Console.ReadLine()) * 1000;
-        base.SetDuration(duration);
+        int attempts = duration / 6;
 
+        
         Console.Clear();
         Console.WriteLine("Get Ready...");
 
-        Breath();
-        Console.WriteLine("\nWell done... ");
+        for (int i = 0; i < attempts; i++)
+        {
+            Breath();
+        }
+
+        Console.WriteLine("\nWell done!!");
+        base.GetCloseMessage();
     }
 
     private void Breath()
     {   
-        Console.Write("Breathe in..."); 
-        for (int i = 6; i > 0; i --)
+        Console.Write("\n\nBreathe in..."); 
+        for (int i = 3; i > 0; i --)
         {
             Console.Write(i);
             Thread.Sleep(1000);
@@ -36,7 +43,7 @@ public class BreathingActivity : Activity
         }
         
         Console.Write("\nNow breathe out...");
-        for (int i = 6; i > 0; i --)
+        for (int i = 3; i > 0; i --)
         {
             Console.Write(i);
             Thread.Sleep(1000);
