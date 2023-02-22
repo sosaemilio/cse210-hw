@@ -15,8 +15,7 @@ public class BreathingActivity : Activity
         base.DisplayActivity();
         Console.Write("How long would you like to wait in seconds ");
         int duration = int.Parse(Console.ReadLine());
-        //base.SetDuration(duration);
-
+        base.SetDuration(duration);
         int attempts = duration / 6;
 
         
@@ -29,7 +28,7 @@ public class BreathingActivity : Activity
         }
 
         Console.WriteLine("\nWell done!!");
-        base.GetCloseMessage();
+        Console.WriteLine(base.GetCloseMessage();)
     }
 
     private void Breath()
