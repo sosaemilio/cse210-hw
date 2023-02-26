@@ -22,13 +22,28 @@ public class ListingActivity : Activity
         Console.Clear();
         base.DisplayActivity();
         Console.Write("\nHow long would you like to wait in seconds ");
+        
         int duration = int.Parse(Console.ReadLine());
         base.SetDuration(duration);
 
+        DisplayPromptMessage();
         Console.Clear();
+        
         Console.WriteLine("Get Ready...");
         base.Wait();
 
+        Listing();
+
+        Console.WriteLine($"\nYou listed {completedActivities} items!");
+        Console.WriteLine("\nWell done!!");
+        base.Wait();
+
+        Console.WriteLine($"\n{base.GetCloseMessage()}");
+        base.Wait();
+    }
+
+    private void DisplayPromptMessage()
+    {
         Console.WriteLine("\nList as many responses you can to the following prompt");
         Console.WriteLine($"--- {base.GetPrompt(4)} ---");
         Console.Write("You may begin in: ");
@@ -38,7 +53,10 @@ public class ListingActivity : Activity
             Thread.Sleep(1000);
             Console.Write("\b \b");
         }
+    }
 
+    private void Listing()
+    {
         DateTime currentTime = DateTime.Now;
         DateTime endTime = currentTime.AddSeconds(base.GetDuration());
         Console.WriteLine();
@@ -50,11 +68,5 @@ public class ListingActivity : Activity
             completedActivities += 1;
             currentTime = DateTime.Now;
         }
-
-        Console.WriteLine($"\nYou listed {completedActivities} items!");
-        Console.WriteLine("\nWell done!!");
-        base.Wait();
-        Console.WriteLine($"\n{base.GetCloseMessage()}");
-        base.Wait();
     }
 }

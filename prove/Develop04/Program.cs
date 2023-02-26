@@ -5,6 +5,7 @@ class Program
     static void Main(string[] args)
     {
         bool exit = false;
+        Log activityLog = new Log();
         do
         {
             Console.Clear();
@@ -20,14 +21,17 @@ class Program
             {
                 case 1:
                     BreathingActivity breathing = new BreathingActivity();
+                    activityLog.SaveLog("Breathing");
                     breathing.StartActivity();
                     break;
                 case 2:
                     ReflectionActivity reflection = new ReflectionActivity();
+                    activityLog.SaveLog("Reflection");
                     reflection.StartActivity();
                     break;
                 case 3:
                     ListingActivity listing = new ListingActivity();
+                    activityLog.SaveLog("Listing");
                     listing.StartActivity();
                     break;
                 case 4:
