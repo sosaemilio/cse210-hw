@@ -35,6 +35,7 @@ class Program
                     listing.StartActivity();
                     break;
                 case 4:
+                    Console.Write($"{activityLog.GetLogsInteger()} activities were completed.");
                     exit = true;
                     break;
             }
