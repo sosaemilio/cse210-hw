@@ -21,7 +21,7 @@ public class BreathingActivity : Activity
 
         
         Console.Clear();
-        Console.Write("Get Ready...");
+        Console.Write("Get Ready...\n");
         base.Wait();
         
         for (int i = 0; i < attempts; i++)
@@ -32,12 +32,13 @@ public class BreathingActivity : Activity
         Console.WriteLine("\n \nWell done!!");
         base.Wait();
         Console.WriteLine($"\n{base.GetCloseMessage()}");
+        base.Wait();
     }
 
     private void Breath()
     {   
         Console.Write("\n\nBreathe in..."); 
-        for (int i = 4; i > 0; i --)
+        for (int i = 3; i > 0; i --)
         {
             Console.Write(i);
             Thread.Sleep(1000);
@@ -45,7 +46,7 @@ public class BreathingActivity : Activity
         }
         
         Console.Write("\nNow breathe out...");
-        for (int i = 4; i > 0; i --)
+        for (int i = 3; i > 0; i --)
         {
             Console.Write(i);
             Thread.Sleep(1000);

@@ -27,6 +27,7 @@ public class ListingActivity : Activity
 
         Console.Clear();
         Console.WriteLine("Get Ready...");
+        base.Wait();
 
         Console.WriteLine("\nList as many responses you can to the following prompt");
         Console.WriteLine($"--- {base.GetPrompt(4)} ---");
@@ -38,9 +39,9 @@ public class ListingActivity : Activity
             Console.Write("\b \b");
         }
 
-        Console.WriteLine();
         DateTime currentTime = DateTime.Now;
         DateTime endTime = currentTime.AddSeconds(base.GetDuration());
+        Console.WriteLine();
 
         while (currentTime < endTime)
         {
@@ -50,8 +51,10 @@ public class ListingActivity : Activity
             currentTime = DateTime.Now;
         }
 
+        Console.WriteLine($"\nYou listed {completedActivities} items!");
+        Console.WriteLine("\nWell done!!");
         base.Wait();
-        Console.WriteLine("\nWell done!!\n");
-        Console.WriteLine(base.GetCloseMessage());
+        Console.WriteLine($"\n{base.GetCloseMessage()}");
+        base.Wait();
     }
 }

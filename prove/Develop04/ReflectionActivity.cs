@@ -32,9 +32,11 @@ public class ReflectionActivity : Activity
     }
 
     //Methods
-    private string GetQuestion(int number)
+    private string GetQuestion()
     {   
-        return questions[number];
+        Random rnd = new Random();
+        int randomQuestion = rnd.Next(6);
+        return questions[randomQuestion];
     }
 
     public void StartActivity()
@@ -47,6 +49,7 @@ public class ReflectionActivity : Activity
 
         Console.Clear();
         Console.WriteLine("Get Ready...");
+        base.Wait();
 
         Console.WriteLine("\nConsider the following prompt: \n");
         Console.WriteLine($"--- {base.GetPrompt(4)} ---");
@@ -56,23 +59,29 @@ public class ReflectionActivity : Activity
 
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
-        for (int i = 6; i > 0; i --)
+        for (int i = 4; i > 0; i --)
         {
             Console.Write(i);
             Thread.Sleep(1000);
             Console.Write("\b \b");
         }
 
-        //LIST -> question1, question3,
         Console.Clear();
-        for (int i = 0; i < 5; i++)
+
+        DateTime currentTime = DateTime.Now;
+        DateTime endTime = currentTime.AddSeconds(base.GetDuration());
+
+        while (currentTime < endTime)
         {
-            Console.WriteLine($"> {GetQuestion(i)}");
+            Console.Write($"\n> {GetQuestion()} ");
             base.Wait();
+            currentTime = DateTime.Now;
         }
 
-        Console.WriteLine("\nWell done!!\n");
+        Console.WriteLine("\n\nWell done!!\n");
+        base.Wait();
         Console.WriteLine(base.GetCloseMessage());
+        base.Wait();
         
     }
 }

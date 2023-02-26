@@ -39,7 +39,7 @@ public class Activity
 
     public string GetCloseMessage()
     {
-        string closeMessage = "You have completed another " + _duration + " seconds of the " + _activityName;
+        string closeMessage = "You have completed another " + _duration + " seconds of the " + _activityName + ".";
         return closeMessage;
     }
 
@@ -56,7 +56,7 @@ public class Activity
         foreach(string icon in animation)
         {
             Console.Write(icon);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             Console.Write("\b \b");
         }
     }
