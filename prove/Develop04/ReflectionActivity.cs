@@ -51,9 +51,7 @@ public class ReflectionActivity : Activity
         Console.WriteLine("Get Ready...");
         base.Wait();
 
-        Console.WriteLine("\nConsider the following prompt: \n");
-        Console.WriteLine($"--- {base.GetPrompt(4)} ---");
-        Console.WriteLine("\nWhen you have something in mind, press ENTER to continue");
+        DisplayPromptMessage();
 
         Console.ReadLine();
 
@@ -68,6 +66,23 @@ public class ReflectionActivity : Activity
 
         Console.Clear();
 
+        Reflect();
+
+        Console.WriteLine("\n\nWell done!!\n");
+        base.Wait();
+        Console.WriteLine(base.GetCloseMessage());
+        base.Wait();
+    }
+
+    private void DisplayPromptMessage()
+    {
+        Console.WriteLine("\nConsider the following prompt: \n");
+        Console.WriteLine($"--- {base.GetPrompt(4)} ---");
+        Console.WriteLine("\nWhen you have something in mind, press ENTER to continue");
+    }
+
+    private void Reflect()
+    {     
         DateTime currentTime = DateTime.Now;
         DateTime endTime = currentTime.AddSeconds(base.GetDuration());
 
@@ -77,11 +92,5 @@ public class ReflectionActivity : Activity
             base.Wait();
             currentTime = DateTime.Now;
         }
-
-        Console.WriteLine("\n\nWell done!!\n");
-        base.Wait();
-        Console.WriteLine(base.GetCloseMessage());
-        base.Wait();
-        
     }
 }
