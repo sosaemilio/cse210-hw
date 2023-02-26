@@ -26,26 +26,53 @@ public class ReflectionActivity : Activity
             "Think of a time when you helped someone in need.",
             "Think of a time when you did something truly selfless."
         };
+        //Parent Class
         base.SetActivity(activityName, description);
         base.SetPromptList(prompt);
     }
 
     //Methods
-    private string GetQuestions()
-    {
-        return questions[0];
+    private string GetQuestion(int number)
+    {   
+        return questions[number];
     }
 
     public void StartActivity()
     {
+        Console.Clear();
         base.DisplayActivity();
-        Console.Write("How long would you like to wait in seconds ");
+        Console.Write("\nHow long would you like to wait in seconds ");
         int duration = int.Parse(Console.ReadLine());
         base.SetDuration(duration);
 
         Console.Clear();
         Console.WriteLine("Get Ready...");
 
-        Console.WriteLine("\nConsider the following prompt: ");
+        Console.WriteLine("\nConsider the following prompt: \n");
+        Console.WriteLine($"--- {base.GetPrompt(4)} ---");
+        Console.WriteLine("\nWhen you have something in mind, press ENTER to continue");
+
+        Console.ReadLine();
+
+        Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
+        Console.Write("You may begin in: ");
+        for (int i = 6; i > 0; i --)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+
+        //LIST -> question1, question3,
+        Console.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"> {GetQuestion(i)}");
+            base.Wait();
+        }
+
+        Console.WriteLine("\nWell done!!\n");
+        Console.WriteLine(base.GetCloseMessage());
+        
     }
 }
