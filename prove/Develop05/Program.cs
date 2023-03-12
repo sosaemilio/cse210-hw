@@ -74,8 +74,9 @@ class Program
                     Console.Write("What is the filename for the goal file? ");
                     string loadedFilename = Console.ReadLine();
 
-                    goalFileSaver = new SimpleGoal();
-                    goalList = goalFileSaver.LoadGoals(loadedFilename);
+                    SimpleGoal fileLoader = new SimpleGoal();
+                    goalList = fileLoader.LoadGoals(loadedFilename);
+                    totalPoints = fileLoader.LoadPoints(loadedFilename);
                     break;
                 case 5:
                     // Records the Goal Completion
@@ -89,7 +90,7 @@ class Program
                     int accomplishedGoal = int.Parse(Console.ReadLine());
                     int earnedPoints = goalList[accomplishedGoal - 1].RecordGoal();
                     
-
+                    // Determinates is the goal was completed or not, the purpose is to display a custom message
                     if (earnedPoints == 0)
                     {
                         Console.WriteLine("Goal already completed");
@@ -101,6 +102,9 @@ class Program
                         Console.WriteLine($"You now have {totalPoints}");
                     }
                     
+                    break;
+                case 6:
+                    Console.WriteLine("Have a great day!");
                     break;
                 default:
                     Console.WriteLine("You selected an incorrect choice");

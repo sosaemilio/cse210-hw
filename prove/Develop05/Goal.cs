@@ -48,44 +48,69 @@ public abstract class Goal
         {
             string[] lines = System.IO.File.ReadAllLines(filename);
 
-        foreach (string line in lines)
-        {
-            string[] goal = line.Split(":");
-            
-            //INDEXERS
-            int goalType = 0;
-            int goalData = 1;
+            foreach (string line in lines)
+            {
+                string[] goal = line.Split(":");
+                
+                //INDEXERS
+                int goalType = 0;
+                int goalData = 1;
 
-            if (goal[goalType] == "SimpleGoal")
-            {
-                string[] goalInformation = goal[goalData].Split(",");
-                SimpleGoal simpleGoal = new SimpleGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), bool.Parse(goalInformation[3]));
-                goalList.Add(simpleGoal);
-            } else if (goal[goalType] == "EternalGoal")
-            {
-                string[] goalInformation = goal[goalData].Split(",");
-                EternalGoal eternalGoal = new EternalGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]));
-                goalList.Add(eternalGoal);
-            } else if (goal[goalType] == "ChecklistGoal")
-            {
-                string[] goalInformation = goal[goalData].Split(",");
-                ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[3]), int.Parse(goalInformation[4]), int.Parse(goalInformation[5]));
-                goalList.Add(checklistGoal);
-            } else {
-                ;
+                if (goal[goalType] == "SimpleGoal")
+                {
+                    string[] goalInformation = goal[goalData].Split(",");
+                    SimpleGoal simpleGoal = new SimpleGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), bool.Parse(goalInformation[3]));
+                    goalList.Add(simpleGoal);
+                } 
+                else if (goal[goalType] == "EternalGoal")
+                {
+                    string[] goalInformation = goal[goalData].Split(",");
+                    EternalGoal eternalGoal = new EternalGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]));
+                    goalList.Add(eternalGoal);
+                } 
+                else if (goal[goalType] == "ChecklistGoal")
+                {
+                    string[] goalInformation = goal[goalData].Split(",");
+                    ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[3]), int.Parse(goalInformation[4]), int.Parse(goalInformation[5]));
+                    int goalsNumber = int.Parse(goalInformation[4]);
+                    int completedGoals = int.Parse(goalInformation[5]);
+                    
+                    if (completedGoals == goalsNumber) 
+                    {
+                        checklistGoal.CompleteGoal();
+                        goalList.Add(checklistGoal);
+                    } 
+                    else 
+                    {
+                        goalList.Add(checklistGoal);
+                    }
+                } 
+                else {
+                    ;
+                }
             }
-        }
         }
         catch(System.IO.FileNotFoundException e)
         {
             Console.WriteLine($"File not found -- ERROR DESCRIPTION: {e.Message}");
         }
+
         return goalList;
     }
 
     public int LoadPoints(string filename)
     {
-        return 1;
+        int totalPoints = 0;
+        try
+        {
+            string[] lines = System.IO.File.ReadAllLines(filename);
+            totalPoints = int.Parse(lines[0]);    
+        }
+        catch(System.IO.FileNotFoundException e)
+        {
+            Console.WriteLine($"File not found -- ERROR DESCRIPTION: {e.Message}");
+        }
+        return totalPoints;
     }
 
     protected bool IsCompleted()
