@@ -22,24 +22,15 @@ public abstract class Goal
         this._complete = false;
     }
 
-    // Methods 
-    public int GetPoints()
-    {   
-        int points = 0;
-        if (!IsCompleted())
-        {
-            points = 0;
-        } else 
-        {
-            points = _points;
-        }
-            
-        return points;
+    // Methods
+
+    public string GetGoalName() 
+    {
+        return _goalName;
     }
 
     public void SaveGoals(List<Goal> goals, string filename, int totalPoints)
     {
-        
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
             outputFile.WriteLine(totalPoints);
@@ -70,18 +61,18 @@ public abstract class Goal
                 string[] goalInformation = goal[goalData].Split(",");
                 SimpleGoal simpleGoal = new SimpleGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), bool.Parse(goalInformation[3]));
                 goalList.Add(simpleGoal);
-            } 
-            if (goal[goalType] == "EternalGoal")
+            } else if (goal[goalType] == "EternalGoal")
             {
                 string[] goalInformation = goal[goalData].Split(",");
                 EternalGoal eternalGoal = new EternalGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]));
                 goalList.Add(eternalGoal);
-            }
-            if (goal[goalType] == "ChecklistGoal")
+            } else if (goal[goalType] == "ChecklistGoal")
             {
                 string[] goalInformation = goal[goalData].Split(",");
                 ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[4]), int.Parse(goalInformation[3]), int.Parse(goalInformation[5]));
                 goalList.Add(checklistGoal);
+            } else {
+                ;
             }
         }
         }
@@ -109,6 +100,6 @@ public abstract class Goal
 
     public abstract string GetGoal();
     public abstract string GetGoalLine();
-    //public abstract void RecordGoal();
+    public abstract int RecordGoal();
 
 }

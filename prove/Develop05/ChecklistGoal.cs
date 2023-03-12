@@ -40,4 +40,28 @@ public class ChecklistGoal : Goal
         string goal = $"{base._goalType}:{_goalName},{base._shortDescription},{base._points},{_bonus},{_checklistNumbers},{_completedGoals}";
         return goal;
     }
+
+    public override int RecordGoal()
+    {
+        int points = 0;
+        if (_completedGoals != _checklistNumbers)
+        {
+            _completedGoals += 1;
+            if (_completedGoals == _checklistNumbers || !base.IsCompleted())
+            {
+                base.CompleteGoal();
+                points = _bonus + base._points;
+            }
+            else
+            {
+               points = base._points;
+            }
+        }
+        else if (_completedGoals == _checklistNumbers || base.IsCompleted())
+        {
+            points = 0;
+        }
+
+        return points;
+    }
 }

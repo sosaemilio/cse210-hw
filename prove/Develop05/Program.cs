@@ -7,25 +7,27 @@ class Program
     {
         List<Goal> goalList = new List<Goal>();
         int option = 0;
-        int points = 0;
+        int totalPoints = 0;
 
         do
         {
-            Console.WriteLine($"\nYou have {points} points. ");
+            Console.WriteLine($"\nYou have {totalPoints} points. ");
 
             // Display the menu and save the selected option, then continue depending of the selected option.
             Console.WriteLine("\nMenu Options: \n  1. Create New Goal \n  2. List Goals \n  3. Save Goals \n  4. Load Goals \n  5. Record Event \n  6. Quit");
             Console.Write("Select the choise from the menu: ");
+
+            // Exception in case the user uses a value that is not an integer
             try
             {
                 option = int.Parse(Console.ReadLine());
             }
             catch (System.FormatException e)
             {
-                Console.WriteLine($"Incorrect Value -- ERROR DESCRIPTION: {e.Message} \n");
+                Console.WriteLine($"Incorrect Value Type -- ERROR DESCRIPTION: {e.Message} \n");
             }
 
-            // Menu
+            // MAIN MENU
             switch (option)
             {
                 case 1:
@@ -52,7 +54,7 @@ class Program
                     }
                     break;
                 case 2:
-                // List all the Goals
+                    // List all the Goals
                     Console.WriteLine("Your goals are: ");
                     for (int i = 0; i < goalList.Count(); i++)
                     {
@@ -65,7 +67,7 @@ class Program
                     string filename = Console.ReadLine();
 
                     SimpleGoal goalFileSaver = new SimpleGoal();
-                    goalFileSaver.SaveGoals(goalList, filename, points);
+                    goalFileSaver.SaveGoals(goalList, filename, totalPoints);
                     break;
                 case 4:
                     // Load the goals into the program
@@ -75,16 +77,42 @@ class Program
                     goalFileSaver = new SimpleGoal();
                     goalList = goalFileSaver.LoadGoals(loadedFilename);
                     break;
+                case 5:
+                    // Records the Goal Completion
+                    Console.WriteLine("The goals are: ");
+                    for (int i = 0; i < goalList.Count(); i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {goalList[i].GetGoalName()}");
+                    }
+
+                    Console.Write("Which goal did you accomplish? ");
+                    int accomplishedGoal = int.Parse(Console.ReadLine());
+                    int earnedPoints = goalList[accomplishedGoal - 1].RecordGoal();
+                    
+
+                    if (earnedPoints == 0)
+                    {
+                        Console.WriteLine("Goal already completed");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Congratulations you have earned {earnedPoints}");
+                        totalPoints += earnedPoints;
+                    }
+
+                    Console.WriteLine($"You now have {totalPoints} \n");
+                    break;
                 default:
                     Console.WriteLine("You selected an incorrect choice");
                     break;
-        }
+            }
         } while(option != 6);
 
+
         /***
-        @
-        @  Functions
-        @
+        *  
+        *  Functions
+        *  
         ***/
 
         SimpleGoal CreateSimpleGoal()

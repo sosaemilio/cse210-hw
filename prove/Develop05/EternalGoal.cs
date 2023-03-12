@@ -17,4 +17,9 @@ public class EternalGoal : Goal
         string goal = $"{base._goalType}:{_goalName},{base._shortDescription},{base._points}";
         return goal;
     }
+    
+    public override int RecordGoal()
+    {
+        return base._points;
+    }
 }

@@ -34,4 +34,16 @@ public class SimpleGoal : Goal
         string goal = $"{base._goalType}:{_goalName},{base._shortDescription},{base._points},{base.IsCompleted()}";
         return goal;
     }
+    
+    
+    public override int RecordGoal()
+    {
+        if (!base.IsCompleted())
+        {
+            base.CompleteGoal();
+            return base._points;
+        } else {
+            return 0;
+        }
+    }
 }
