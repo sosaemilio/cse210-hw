@@ -53,7 +53,9 @@ public abstract class Goal
     public List<Goal> LoadGoals(string filename) 
     {
         List<Goal> goalList = new List<Goal>();
-        string[] lines = System.IO.File.ReadAllLines(filename);
+        try
+        {
+            string[] lines = System.IO.File.ReadAllLines(filename);
 
         foreach (string line in lines)
         {
@@ -81,12 +83,18 @@ public abstract class Goal
                 ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[4]), int.Parse(goalInformation[3]), int.Parse(goalInformation[5]));
                 goalList.Add(checklistGoal);
             }
-            /*else 
-            {
-                int totalPoints = int.Parse(goal[0]);
-            }*/
+        }
+        }
+        catch(System.IO.FileNotFoundException e)
+        {
+            Console.WriteLine($"File not found -- ERROR DESCRIPTION: {e.Message}");
         }
         return goalList;
+    }
+
+    public int LoadPoints(string filename)
+    {
+        return 1;
     }
 
     protected bool IsCompleted()
