@@ -12,7 +12,7 @@ public class ChecklistGoal : Goal
 
     }
 
-    public ChecklistGoal(string goalName, string shortDescription, int points, int checklistNumbers, int bonusPoints, int completedPoints) : base (goalName, shortDescription, points, "ChecklistGoal")
+    public ChecklistGoal(string goalName, string shortDescription, int points, int bonusPoints, int checklistNumbers,  int completedPoints) : base (goalName, shortDescription, points, "ChecklistGoal")
     {
         this._checklistNumbers = checklistNumbers;
         this._completedGoals = completedPoints;
@@ -29,7 +29,7 @@ public class ChecklistGoal : Goal
         } 
         else 
         {
-            goal = "[X] " + base._goalName + " " + $"({base._shortDescription})"; 
+            goal = "[X] " + base._goalName + " " + $"({base._shortDescription} -- Currently Completed: {_completedGoals}/{_checklistNumbers}"; 
         }
         return goal;
     }
@@ -47,7 +47,7 @@ public class ChecklistGoal : Goal
         if (_completedGoals != _checklistNumbers)
         {
             _completedGoals += 1;
-            if (_completedGoals == _checklistNumbers || !base.IsCompleted())
+            if (_completedGoals == _checklistNumbers && !base.IsCompleted())
             {
                 base.CompleteGoal();
                 points = _bonus + base._points;
@@ -56,10 +56,6 @@ public class ChecklistGoal : Goal
             {
                points = base._points;
             }
-        }
-        else if (_completedGoals == _checklistNumbers || base.IsCompleted())
-        {
-            points = 0;
         }
 
         return points;

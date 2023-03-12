@@ -96,11 +96,11 @@ class Program
                     }
                     else
                     {
-                        Console.WriteLine($"Congratulations you have earned {earnedPoints}");
+                        Console.WriteLine($"Congratulations! You have earned {earnedPoints}!");
                         totalPoints += earnedPoints;
+                        Console.WriteLine($"You now have {totalPoints}");
                     }
-
-                    Console.WriteLine($"You now have {totalPoints} \n");
+                    
                     break;
                 default:
                     Console.WriteLine("You selected an incorrect choice");

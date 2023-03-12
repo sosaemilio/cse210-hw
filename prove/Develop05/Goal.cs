@@ -69,7 +69,7 @@ public abstract class Goal
             } else if (goal[goalType] == "ChecklistGoal")
             {
                 string[] goalInformation = goal[goalData].Split(",");
-                ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[4]), int.Parse(goalInformation[3]), int.Parse(goalInformation[5]));
+                ChecklistGoal checklistGoal = new ChecklistGoal(goalInformation[0], goalInformation[1], int.Parse(goalInformation[2]), int.Parse(goalInformation[3]), int.Parse(goalInformation[4]), int.Parse(goalInformation[5]));
                 goalList.Add(checklistGoal);
             } else {
                 ;
