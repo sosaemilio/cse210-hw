@@ -4,7 +4,7 @@ public class Swimming : Activity
 
     public Swimming(int duration, string date, int laps) : base(duration, date)
     {
-        this._laps = laps * 50;
+        this._laps = laps;
     }
 
     protected override double GetDistance()
