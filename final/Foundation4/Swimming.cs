@@ -4,12 +4,12 @@ public class Swimming : Activity
 
     public Swimming(int duration, string date, int laps) : base(duration, date)
     {
-        this._laps = laps;
+        this._laps = laps * 50;
     }
 
     protected override double GetDistance()
     {
-        double distance = ((_laps * 0.03) * 50 / 1000) * 0.62;
+        double distance = ((_laps) * 50 / 1000) * 0.62;
         return Math.Round(distance, 2); 
     }
 
